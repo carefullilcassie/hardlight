@@ -83,7 +83,7 @@ namespace Content.Shared.Preferences
 
         public const int DefaultBalance = 30000;
 
-    // Note: Legacy fields removed during merge; current fields are defined below with [DataField].
+        // Note: Legacy fields removed during merge; current fields are defined below with [DataField].
 
         /// <summary>
         /// Job preferences for initial spawn.
@@ -268,12 +268,17 @@ namespace Content.Shared.Preferences
         /// </summary>
         /// <param name="species">The species to use in this default profile. The default species is <see cref="SharedHumanoidAppearanceSystem.DefaultSpecies"/>.</param>
         /// <returns>Humanoid character profile with default settings.</returns>
-        public static HumanoidCharacterProfile DefaultWithSpecies(string species = SharedHumanoidAppearanceSystem.DefaultSpecies)
+        public static HumanoidCharacterProfile DefaultWithSpecies(string species)
         {
             return new()
             {
                 Species = species,
             };
+        }
+
+        public static HumanoidCharacterProfile DefaultWithSpecies()
+        {
+            return DefaultWithSpecies(SharedHumanoidAppearanceSystem.DefaultSpecies);
         }
 
         // TODO: This should eventually not be a visual change only.
@@ -291,7 +296,7 @@ namespace Content.Shared.Preferences
             return RandomWithSpecies(species: species, balance: balance);
         }
 
-        public static HumanoidCharacterProfile RandomWithSpecies(string species = SharedHumanoidAppearanceSystem.DefaultSpecies, int balance = DefaultBalance)
+        public static HumanoidCharacterProfile RandomWithSpecies(string species, int balance = DefaultBalance)
         {
             var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
             var random = IoCManager.Resolve<IRobustRandom>();
@@ -324,8 +329,14 @@ namespace Content.Shared.Preferences
                 Age = age,
                 Gender = gender,
                 Species = species,
+                BankBalance = balance,
                 Appearance = HumanoidCharacterAppearance.Random(species, sex),
             };
+        }
+
+        public static HumanoidCharacterProfile RandomWithSpecies()
+        {
+            return RandomWithSpecies(SharedHumanoidAppearanceSystem.DefaultSpecies, DefaultBalance);
         }
 
         public HumanoidCharacterProfile WithName(string name)

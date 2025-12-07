@@ -5,6 +5,7 @@ using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Paper;
 using Robust.Shared.Containers;
 using Robust.Shared.Utility;
+using Robust.Shared.Prototypes;
 using Content.Shared.Tag; // Frontier
 
 namespace Content.Shared.Labels.EntitySystems;
@@ -18,8 +19,7 @@ public sealed partial class LabelSystem : EntitySystem
 
     public const string ContainerName = "paper_label";
 
-    [ValidatePrototypeId<TagPrototype>] // Frontier: label prevention
-    private const string PreventTag = "PreventLabel"; // Frontier: label prevention
+    private static readonly ProtoId<TagPrototype> PreventTag = "PreventLabel"; // Frontier: label prevention
 
     public override void Initialize()
     {

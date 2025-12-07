@@ -29,8 +29,7 @@ public sealed partial class PsionicsRecordsConsoleWindow : FancyWindow
 
     public readonly EntityUid Console;
 
-    [ValidatePrototypeId<DatasetPrototype>]
-    private const string ReasonPlaceholders = "PsionicsRecordsRecordsPlaceholders";
+    private static readonly ProtoId<DatasetPrototype> ReasonPlaceholders = "PsionicsRecordsRecordsPlaceholders";
 
     public Action<uint?>? OnKeySelected;
     public Action<StationRecordFilterType, string>? OnFiltersChanged;
@@ -64,7 +63,7 @@ public sealed partial class PsionicsRecordsConsoleWindow : FancyWindow
 
         foreach (var item in Enum.GetValues<StationRecordFilterType>())
         {
-            FilterType.AddItem(GetTypeFilterLocals(item), (int) item);
+            FilterType.AddItem(GetTypeFilterLocals(item), (int)item);
         }
 
         foreach (var status in Enum.GetValues<PsionicsStatus>())
@@ -90,7 +89,7 @@ public sealed partial class PsionicsRecordsConsoleWindow : FancyWindow
 
         FilterType.OnItemSelected += eventArgs =>
         {
-            var type = (StationRecordFilterType) eventArgs.Id;
+            var type = (StationRecordFilterType)eventArgs.Id;
 
             if (_currentFilterType != type)
             {
@@ -106,7 +105,7 @@ public sealed partial class PsionicsRecordsConsoleWindow : FancyWindow
 
         StatusOptionButton.OnItemSelected += args =>
         {
-            SetStatus((PsionicsStatus) args.Id);
+            SetStatus((PsionicsStatus)args.Id);
         };
     }
 
@@ -127,7 +126,7 @@ public sealed partial class PsionicsRecordsConsoleWindow : FancyWindow
 
         _selectedKey = state.SelectedKey;
 
-        FilterType.SelectId((int) _currentFilterType);
+        FilterType.SelectId((int)_currentFilterType);
 
         // set up the records listing panel
         RecordListing.Clear();
@@ -143,7 +142,7 @@ public sealed partial class PsionicsRecordsConsoleWindow : FancyWindow
         PersonContainer.Visible = selected;
         RecordUnselected.Visible = !selected;
 
-        _access = _player.LocalSession?.AttachedEntity is {} player
+        _access = _player.LocalSession?.AttachedEntity is { } player
             && _accessReader.IsAllowed(player, Console);
 
         // hide access-required editing parts when no access
@@ -181,10 +180,10 @@ public sealed partial class PsionicsRecordsConsoleWindow : FancyWindow
         var na = Loc.GetString("generic-not-available-shorthand");
         PersonName.Text = stationRecord.Name;
 
-        StatusOptionButton.SelectId((int) psionicsRecord.Status);
-        if (psionicsRecord.Reason is {} reason)
+        StatusOptionButton.SelectId((int)psionicsRecord.Status);
+        if (psionicsRecord.Reason is { } reason)
         {
-            var message = FormattedMessage.FromMarkup(Loc.GetString("psionics-records-console-wanted-reason"));
+            var message = FormattedMessage.FromMarkupOrThrow(Loc.GetString("psionics-records-console-wanted-reason"));
             message.AddText($": {reason}");
             PsionicsList.SetMessage(message);
             PsionicsList.Visible = true;
@@ -198,7 +197,7 @@ public sealed partial class PsionicsRecordsConsoleWindow : FancyWindow
     private void AddStatusSelect(PsionicsStatus status)
     {
         var name = Loc.GetString($"psionics-records-status-{status.ToString().ToLower()}");
-        StatusOptionButton.AddItem(name, (int) status);
+        StatusOptionButton.AddItem(name, (int)status);
     }
 
     private void FilterListingOfRecords(string text = "")

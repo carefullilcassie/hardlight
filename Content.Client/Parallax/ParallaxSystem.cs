@@ -14,8 +14,7 @@ public sealed class ParallaxSystem : SharedParallaxSystem
     [Dependency] private readonly IOverlayManager _overlay = default!;
     [Dependency] private readonly IParallaxManager _parallax = default!;
 
-    [ValidatePrototypeId<ParallaxPrototype>]
-    private const string Fallback = "Default";
+    private static readonly ProtoId<ParallaxPrototype> Fallback = "Default";
 
     public const int ParallaxZIndex = 0;
 
@@ -95,8 +94,8 @@ public sealed class ParallaxSystem : SharedParallaxSystem
         Color? modulate = null)
     {
         // Size of the texture in world units.
-        var size = sprite.Size / (float) EyeManager.PixelsPerMeter * scale;
-        var scrolled = scrolling * (float) curTime.TotalSeconds;
+        var size = sprite.Size / (float)EyeManager.PixelsPerMeter * scale;
+        var scrolled = scrolling * (float)curTime.TotalSeconds;
 
         // Origin - start with the parallax shift itself.
         var originBL = position * slowness + scrolled;

@@ -29,6 +29,7 @@ public sealed partial class RoleBanListLine : BoxContainer, IBanListLine<SharedS
         IdsClicked?.Invoke(this);
     }
 
+    [Obsolete("Stop inheriting Dispose, if it has a parent then call RemoveChild() on that, else null it out and let the GC handle it.")]
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);

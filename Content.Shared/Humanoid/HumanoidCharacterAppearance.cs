@@ -129,13 +129,13 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             Color.Black,
             Color.Black,
             skinColor,
-            new (),
+            new(),
             1.0f,
             1.0f
         );
     }
 
-    private static IReadOnlyList<Color> RealisticEyeColors = new List<Color>
+    private static readonly IReadOnlyList<Color> RealisticEyeColors = new List<Color>
     {
         Color.Brown,
         Color.Gray,
@@ -151,13 +151,17 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         var hairStyles = markingManager.MarkingsByCategoryAndSpecies(MarkingCategories.Hair, species).Keys.ToList();
         var facialHairStyles = markingManager.MarkingsByCategoryAndSpecies(MarkingCategories.FacialHair, species).Keys.ToList();
 
-        var newHairStyle = hairStyles.Count > 0
-            ? random.Pick(hairStyles)
-            : HairStyles.DefaultHairStyle;
+        ProtoId<MarkingPrototype> newHairStyle;
+        if (hairStyles.Count > 0)
+            newHairStyle = random.Pick(hairStyles);
+        else
+            newHairStyle = HairStyles.DefaultHairStyle;
 
-        var newFacialHairStyle = facialHairStyles.Count == 0 || sex == Sex.Female
-            ? HairStyles.DefaultFacialHairStyle
-            : random.Pick(facialHairStyles);
+        ProtoId<MarkingPrototype> newFacialHairStyle;
+        if (facialHairStyles.Count == 0 || sex == Sex.Female)
+            newFacialHairStyle = HairStyles.DefaultFacialHairStyle;
+        else
+            newFacialHairStyle = random.Pick(facialHairStyles);
 
         var newHairColor = random.Pick(HairStyles.RealisticHairColors);
         newHairColor = newHairColor
@@ -190,7 +194,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
 
         var newHeight = random.NextFloat(0.8f, 1.2f); // Random height between 80% and 120% of normal
         var newWidth = random.NextFloat(0.8f, 1.2f); // Random width between 80% and 120% of normal
-        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, new (), newHeight, newWidth);
+        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, new(), newHeight, newWidth);
 
         float RandomizeColor(float channel)
         {

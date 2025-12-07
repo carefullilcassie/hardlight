@@ -87,7 +87,7 @@ public sealed partial class LawDisplay : Control
             {
                 switch (radioChannel)
                 {
-                    case SharedChatSystem.CommonChannel:
+                    case var value when value == SharedChatSystem.CommonChannel:
                         _chatManager.SendMessage($"{SharedChatSystem.RadioCommonPrefix} {lawIdentifierPlaintext}: {lawDescriptionPlaintext}", ChatSelectChannel.Radio); break;
                     default:
                         _chatManager.SendMessage($"{SharedChatSystem.RadioChannelPrefix}{radioChannelProto.KeyCode} {lawIdentifierPlaintext}: {lawDescriptionPlaintext}", ChatSelectChannel.Radio); break;

@@ -1,9 +1,7 @@
 using Content.Shared.Sprite;
-using Content.Shared.Toggleable;
-using Content.Shared.Sprite;
 using Content.Shared.Movement.Components;
 using Robust.Client.GameObjects;
-using Robust.Shared.GameObjects;
+using Content.Shared.Mobs;
 
 namespace Content.Client.Sprite;
 
@@ -20,10 +18,10 @@ public sealed class SpriteStateToggleVisualizerSystem : VisualizerSystem<SpriteS
         if (args.Sprite == null || string.IsNullOrEmpty(component.SpriteLayer))
             return;
 
-        if (!args.Sprite.LayerMapTryGet(component.SpriteLayer!, out var layerIndex))
+        if (!SpriteSystem.LayerMapTryGet(uid, component.SpriteLayer!, out var layerIndex, false))
             return;
 
-    var enabled = _appearance.TryGetData<bool>(uid, SpriteStateToggleVisuals.Toggled, out var value, args.Component) && value;
+        var enabled = _appearance.TryGetData<bool>(uid, SpriteStateToggleVisuals.Toggled, out var value, args.Component) && value;
 
         // If there's a movement component, prefer the moving or idle variant based on IsMoving.
         var moving = TryComp<SpriteMovementComponent>(uid, out var move) && move.IsMoving;
@@ -35,7 +33,7 @@ public sealed class SpriteStateToggleVisualizerSystem : VisualizerSystem<SpriteS
             desiredState = enabled ? component.StateOn : component.StateOff;
 
         if (!string.IsNullOrEmpty(desiredState))
-            args.Sprite.LayerSetState(layerIndex, desiredState!);
+            SpriteSystem.LayerSetRsiState(uid, layerIndex, desiredState!);
     }
 
 }

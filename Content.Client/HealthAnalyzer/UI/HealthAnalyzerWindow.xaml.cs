@@ -41,7 +41,6 @@ namespace Content.Client.HealthAnalyzer.UI
         public event Action<TargetBodyPart?, EntityUid>? OnBodyPartSelected;
         private EntityUid _spriteViewEntity;
 
-        [ValidatePrototypeId<EntityPrototype>]
         private readonly EntProtoId _bodyView = "AlertSpriteView";
 
         private readonly Dictionary<TargetBodyPart, TextureButton> _bodyPartControls;
@@ -350,9 +349,10 @@ namespace Content.Client.HealthAnalyzer.UI
             {
                 // TODO: PartStatusUIController and make it use layers instead of TextureRects when EE refactors alerts.
                 string enumName = Enum.GetName(typeof(TargetBodyPart), bodyPart) ?? "Unknown";
-                int enumValue = (int) integrity;
+                int enumValue = (int)integrity;
                 var rsi = new SpriteSpecifier.Rsi(new ResPath($"/Textures/_Shitmed/Interface/Targeting/Status/{enumName.ToLowerInvariant()}.rsi"), $"{enumName.ToLowerInvariant()}_{enumValue}");
                 // Shitcode with love from Russia :)
+                // Warning notes - This entire system needs ripping out and replacing with SpriteSystem calls.
                 if (!sprite.TryGetLayer(layer, out _))
                     sprite.AddLayer(_spriteSystem.Frame0(rsi));
                 else

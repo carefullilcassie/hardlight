@@ -4,7 +4,6 @@ using Content.Shared.Body.Events;
 using Content.Shared.Body.Organ;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Body.Part;
-using Content.Shared.Damage; // Shitmed Change
 using Robust.Shared.Containers;
 
 // Shitmed Change
