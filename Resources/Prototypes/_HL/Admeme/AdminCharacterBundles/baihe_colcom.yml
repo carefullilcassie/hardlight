@@ -16,7 +16,6 @@
     belt: EnergyDomeGeneratorPersonalSyndie
     back: WeaponEnergyHalberd
     id: CentcomPDA
-<<<<<<< HEAD
 
 - type: entity
   parent: [BaseMobKitsune, BaseMobHuman]
@@ -91,5 +90,3 @@
       hairGlowing: False
       hairColor: '#91301AFF'
       hair: HumanHairPonytail3
-=======
->>>>>>> parent of b371e81daa (Adds Kitsunegami???)
