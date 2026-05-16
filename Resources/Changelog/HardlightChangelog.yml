@@ -3960,3 +3960,9 @@ Entries:
       message: Fixed expeditions refusing to leave if attempted to end too early.
   id: 424
   time: '2026-05-16T08:09:20.0000000+00:00'
+- author: re-silvered
+  changes:
+    - type: Fix
+      message: Fixed rule links not appearing
+  id: 425
+  time: '2026-05-16T08:09:53.0000000+00:00'
