@@ -3948,3 +3948,33 @@ Entries:
         reflect state when unpowered.
   id: 422
   time: '2026-05-15T00:46:48.0000000+00:00'
+- author: re-silvered
+  changes:
+    - type: Tweak
+      message: Made it so that old redundant rescue beacons are deleted on roundend
+  id: 423
+  time: '2026-05-16T08:08:58.0000000+00:00'
+- author: re-silvered
+  changes:
+    - type: Fix
+      message: Fixed expeditions refusing to leave if attempted to end too early.
+  id: 424
+  time: '2026-05-16T08:09:20.0000000+00:00'
+- author: re-silvered
+  changes:
+    - type: Fix
+      message: Fixed rule links not appearing
+  id: 425
+  time: '2026-05-16T08:09:53.0000000+00:00'
+- author: re-silvered
+  changes:
+    - type: Fix
+      message: Fixed ghosts seeing whisper obfuscation
+  id: 426
+  time: '2026-05-16T08:16:14.0000000+00:00'
+- author: IngvarJackal
+  changes:
+    - type: Tweak
+      message: Nullspace fixes, part 2
+  id: 427
+  time: '2026-05-16T08:17:27.0000000+00:00'

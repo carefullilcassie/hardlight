@@ -581,7 +581,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (MessageRangeCheck(session, data, range) != MessageRangeCheckResult.Full)
                 continue; // Won't get logged to chat, and ghosts are too far away to see the pop-up, so we just won't send it to them.
 
-            if (data.Range <= WhisperClearRange)
+            if (data.Range <= WhisperClearRange || data.Observer != ObserverType.NoObserver)
             {
                 var understoodMessage = HasXenoglossy(listener) ? originalMessage : message;
                 var understoodWrappedMessage = HasXenoglossy(listener) ? wrappedOriginalMessage : wrappedMessage;
