@@ -3972,3 +3972,9 @@ Entries:
       message: Fixed ghosts seeing whisper obfuscation
   id: 426
   time: '2026-05-16T08:16:14.0000000+00:00'
+- author: IngvarJackal
+  changes:
+    - type: Tweak
+      message: Nullspace fixes, part 2
+  id: 427
+  time: '2026-05-16T08:17:27.0000000+00:00'
