@@ -43,6 +43,8 @@ pooltoy-text = You're a living inflatable, whether by some weird mutation or by 
 
 big-name = Big
 big-text = You are noticeably larger than average.
+very-big-name = Very Big
+very-big-text = You are significantly larger than average.  This has brought you no benefits over merely being big except learning how to squeeze into tight spaces.
 small-name = Small
 small-text = You are noticeably smaller than average.
 tiny-name = Tiny
@@ -86,3 +88,7 @@ hl-trait-kinky-erotic-moods-desc = Every half hour or so you receive a private r
 
 hl-trait-romantic-moods-name = Romantic Moods
 hl-trait-romantic-moods-desc = Every half hour or so you receive a private reminder of two randomly drawn romantic inclinations — tenderness, dates, closeness. Preferences rotate every one to two and a half hours.
+
+trait-hardskin-name = Hard Skin
+trait-hardskin-desc = Your skin is too hard for needles to pierce.
+injector-component-deny-hardskin = {CAPITALIZE(THE($target))}'s skin is too hard for the needle to pierce.
